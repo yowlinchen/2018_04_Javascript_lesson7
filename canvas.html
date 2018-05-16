@@ -25,7 +25,7 @@
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             // redraw
             for (var i = 0; i < rects.length; i++) {
-                ctx.fillRect(rects[i].x, rects[i].y, 20, 20);
+                rects[i].draw();
             }
         }
 
@@ -33,6 +33,9 @@
         function Rect() {
             this.x = 50;
             this.y = 50;
+            this.draw = function () {
+                ctx.fillRect(this.x, this.y, 20, 20);
+            };
         }
     </script>
 </head>
