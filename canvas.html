@@ -24,8 +24,9 @@
             // clear data
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             // redraw
-            ctx.fillRect(rects[0].x, rects[0].y, 20, 20);
-            ctx.fillRect(rects[1].x, rects[1].y, 20, 20);
+            for (var i = 0; i < rects.length; i++) {
+                ctx.fillRect(rects[i].x, rects[i].y, 20, 20);
+            }
         }
 
         // Rect constructor
