@@ -5,10 +5,24 @@
     <title>Animation</title>
     <script>
         var ctx;
+        var x;
         window.addEventListener("load", function () {
             ctx = document.getElementById("cvs").getContext("2d");
-            ctx.fillRect(50, 50, 100, 100);
-        })
+            x = 50;
+            // ctx.fillRect(x, 50, 100, 100);
+            window.setInterval(refresh, 10);
+            // wrong way of doing it
+            // x=50;
+            // while(x<500){
+            //     ctx.fillrect(x,50,100,100);
+            //     x++;
+            // }
+        });
+
+        function refresh() {
+            x++;
+            ctx.fillRect(x, 50, 20, 20);
+        }
     </script>
 </head>
 
