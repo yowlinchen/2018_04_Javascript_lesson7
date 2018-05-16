@@ -5,36 +5,53 @@
     <title>Animation</title>
     <script>
         var ctx;
-        var rects;
+        var drawables;
         // control first rect
         window.addEventListener("load", function () {
             ctx = document.getElementById("cvs").getContext("2d");
             ctx.canvas.addEventListener("click", function () {
-                rects.push(new Rect());
+                drawables.push(new Circle());
             });
-            rects = []; // new Array()
+            drawables = []; // new Array()
             // rects.push(new Rect());
             // rects.push(new Rect());
-            console.log(rects);
+            console.log(drawables);
             window.setInterval(refresh, 10);
         });
 
         function refresh() {
-            // rects.push(new Rect());
+            drawables.push(new Rect());
             // update data
-            for (var i = 0; i < rects.length; i++) {
-                var dead = rects[i].update();
+            for (var i = 0; i < drawables.length; i++) {
+                var dead = drawables[i].update();
                 if (dead) {
-                    rects.splice(i, 1);
+                    drawables.splice(i, 1);
                     i--;
                 }
             }
             // clear data
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             // redraw
-            for (var i = 0; i < rects.length; i++) {
-                rects[i].draw();
+            for (var i = 0; i < drawables.length; i++) {
+                drawables[i].draw();
             }
+        }
+        // circle constructor
+        function Circle() {
+            this.x = 300;
+            this.y = 300;
+            this.radius = 5;
+            this.update = function () {
+
+            };
+            this.draw = function () {
+                ctx.save();
+                ctx.strokeStyle = "red";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.restore();
+            };
         }
 
         // Rect constructor
