@@ -9,8 +9,10 @@
         // control first rect
         window.addEventListener("load", function () {
             ctx = document.getElementById("cvs").getContext("2d");
-            ctx.canvas.addEventListener("click", function () {
-                drawables.push(new Circle());
+            ctx.canvas.addEventListener("click", function (e) {
+                var x = e.clientX - ctx.canvas.offsetLeft;
+                var y = e.clientY - ctx.canvas.offsetTop;
+                drawables.push(new Circle(x, y));
             });
             drawables = []; // new Array()
             // rects.push(new Rect());
@@ -37,9 +39,9 @@
             }
         }
         // circle constructor
-        function Circle() {
-            this.x = 300;
-            this.y = 300;
+        function Circle(x, y) {
+            this.x = x;
+            this.y = y;
             this.radius = 5;
             this.update = function () {
                 this.radius = this.radius + 0.1;
