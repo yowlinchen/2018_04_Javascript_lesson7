@@ -39,10 +39,11 @@
             this.x = 50;
             this.y = 50;
             this.vx = Math.random() * 1 + 1; //1 ~ 2
-            this.vy = Math.random() * 1 + 1; //1 ~ 2
+            this.vy = 0;
             this.update = function () {
                 this.x = this.x + this.vx;
                 this.y = this.y + this.vy;
+                this.vy += 0.01;
                 // return true -> delete.  return false -> kept
                 return this.x > ctx.canvas.width || this.y > ctx.canvas.height;
             };
