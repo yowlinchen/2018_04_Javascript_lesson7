@@ -20,7 +20,11 @@
         });
 
         function refresh() {
+            // update data
             x++;
+            // clear data
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            // redraw
             ctx.fillRect(x, 50, 20, 20);
         }
     </script>
