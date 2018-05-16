@@ -40,16 +40,21 @@
         function Smoke() {
             this.x = ctx.canvas.width / 2;
             this.y = ctx.canvas.height - 50;
-            this.vx = Math.random() * 2 - 1; // -1 ~~ 1
+            this.vx = Math.random() * 0.8 - 0.4; // -0.4 ~~ 0.4 
             this.vy = Math.random() * 1 - 2; //  -1 ~~ -2 
             this.alpha = 1; // as we go up , less tranparent
             this.size = 20;
             this.update = function () {
                 this.x = this.x + this.vx;
                 this.y = this.y + this.vy;
+                if (this.alpha > 0.015) {
+                    this.alpha -= 0.01;
+                }
+                this.size += 0.5;
                 return this.y < 0; // can have some non-zero value in case picture is cut in half
             };
             this.draw = function () {
+                ctx.globalAlpha = this.alpha;
                 ctx.drawImage(smoke, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
             };
         }
