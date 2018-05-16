@@ -9,6 +9,9 @@
         // control first rect
         window.addEventListener("load", function () {
             ctx = document.getElementById("cvs").getContext("2d");
+            ctx.canvas.addEventListener("click", function () {
+                rects.push(new Rect());
+            });
             rects = []; // new Array()
             // rects.push(new Rect());
             // rects.push(new Rect());
@@ -17,7 +20,7 @@
         });
 
         function refresh() {
-            rects.push(new Rect());
+            // rects.push(new Rect());
             // update data
             for (var i = 0; i < rects.length; i++) {
                 var dead = rects[i].update();
