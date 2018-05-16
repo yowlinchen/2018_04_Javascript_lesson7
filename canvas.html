@@ -37,6 +37,8 @@
             }
         }
 
+        var wind = 0.5;
+
         function Smoke() {
             this.x = ctx.canvas.width / 2;
             this.y = ctx.canvas.height - 50;
@@ -45,7 +47,7 @@
             this.alpha = 1; // as we go up , less tranparent
             this.size = 20;
             this.update = function () {
-                this.x = this.x + this.vx;
+                this.x = this.x + this.vx + (wind + 5 - this.y / 100) / 4;
                 this.y = this.y + this.vy;
                 if (this.alpha > 0.01) {
                     this.alpha -= 0.005;
