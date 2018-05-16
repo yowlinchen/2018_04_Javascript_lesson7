@@ -13,19 +13,19 @@
             rects.push(new Rect());
             rects.push(new Rect());
             console.log(rects);
-            // window.setInterval(refresh, 10);
+            window.setInterval(refresh, 10);
         });
 
         function refresh() {
             // update data
-            x1++;
-            x2++;
-            y2++;
+            rects[0].x++;
+            rects[1].x++;
+            rects[1].y++;
             // clear data
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             // redraw
-            ctx.fillRect(x1, 50, 20, 20);
-            ctx.fillRect(x2, y2, 20, 20);
+            ctx.fillRect(rects[0].x, rects[0].y, 20, 20);
+            ctx.fillRect(rects[1].x, rects[1].y, 20, 20);
         }
 
         // Rect constructor
