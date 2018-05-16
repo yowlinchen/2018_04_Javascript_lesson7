@@ -21,6 +21,7 @@
         });
 
         function refresh() {
+            drawables.push(new Smoke());
             for (var i = 0; i < drawables.length; i++) {
                 var dead = drawables[i].update();
                 if (dead) {
@@ -34,6 +35,23 @@
             for (var i = 0; i < drawables.length; i++) {
                 drawables[i].draw();
             }
+        }
+
+        function Smoke() {
+            this.x = ctx.canvas.width / 2;
+            this.y = ctx.canvas.height - 50;
+            this.vx = Math.random() * 2 - 1; // -1 ~~ 1
+            this.vy = Math.random() * 1 - 2; //  -1 ~~ -2 
+            this.alpha = 1; // as we go up , less tranparent
+            this.size = 20;
+            this.update = function () {
+                this.x = this.x + this.vx;
+                this.y = this.y + this.vy;
+                return this.y < 0; // can have some non-zero value in case picture is cut in half
+            };
+            this.draw = function () {
+                ctx.drawImage(smoke, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+            };
         }
     </script>
 </head>
