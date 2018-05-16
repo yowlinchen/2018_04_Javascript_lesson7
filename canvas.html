@@ -47,8 +47,8 @@
             this.update = function () {
                 this.x = this.x + this.vx;
                 this.y = this.y + this.vy;
-                if (this.alpha > 0.015) {
-                    this.alpha -= 0.01;
+                if (this.alpha > 0.01) {
+                    this.alpha -= 0.005;
                 }
                 this.size += 0.5;
                 return this.y < 0; // can have some non-zero value in case picture is cut in half
