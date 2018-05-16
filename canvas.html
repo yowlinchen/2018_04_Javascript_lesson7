@@ -4,26 +4,23 @@
 <head>
     <title>Animation</title>
     <script>
+        var smoke;
         var ctx;
         var drawables;
         // control first rect
         window.addEventListener("load", function () {
-            ctx = document.getElementById("cvs").getContext("2d");
-            ctx.canvas.addEventListener("click", function (e) {
-                var x = e.clientX - ctx.canvas.offsetLeft;
-                var y = e.clientY - ctx.canvas.offsetTop;
-                drawables.push(new Circle(x, y));
-            });
-            drawables = []; // new Array()
-            // rects.push(new Rect());
-            // rects.push(new Rect());
-            console.log(drawables);
-            window.setInterval(refresh, 10);
+            // loading resources.  Load the resources in the early stage 
+            smoke = new Image();
+            smoke.src = "./smoke.png";
+            smoke.onload = function () {
+                // prepare data
+                ctx = document.getElementById("cvs").getContext("2d");
+                drawables = []; // new Array()
+                window.setInterval(refresh, 10);
+            };
         });
 
         function refresh() {
-            drawables.push(new Rect());
-            // update data
             for (var i = 0; i < drawables.length; i++) {
                 var dead = drawables[i].update();
                 if (dead) {
@@ -37,42 +34,6 @@
             for (var i = 0; i < drawables.length; i++) {
                 drawables[i].draw();
             }
-        }
-        // circle constructor
-        function Circle(x, y) {
-            this.x = x;
-            this.y = y;
-            this.radius = 5;
-            this.update = function () {
-                this.radius = this.radius + 0.1;
-                return this.radius > 30;
-            };
-            this.draw = function () {
-                ctx.save();
-                ctx.strokeStyle = "red";
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-                ctx.stroke();
-                ctx.restore();
-            };
-        }
-
-        // Rect constructor
-        function Rect() {
-            this.x = 50;
-            this.y = 50;
-            this.vx = Math.random() * 1 + 1; //1 ~ 2
-            this.vy = 0;
-            this.update = function () {
-                this.x = this.x + this.vx;
-                this.y = this.y + this.vy;
-                this.vy += 0.01;
-                // return true -> delete.  return false -> kept
-                return this.x > ctx.canvas.width || this.y > ctx.canvas.height;
-            };
-            this.draw = function () {
-                ctx.fillRect(this.x, this.y, 5, 5);
-            };
         }
     </script>
 </head>
