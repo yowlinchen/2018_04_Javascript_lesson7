@@ -42,7 +42,8 @@
             this.y = 300;
             this.radius = 5;
             this.update = function () {
-
+                this.radius = this.radius + 0.1;
+                return this.radius > 30;
             };
             this.draw = function () {
                 ctx.save();
