@@ -5,10 +5,15 @@
     <title>Animation</title>
     <script>
         var ctx;
-        var x;
+        // control first rect
+        var x1;
+        // control second rect
+        var x2, y2;
         window.addEventListener("load", function () {
             ctx = document.getElementById("cvs").getContext("2d");
-            x = 50;
+            x1 = 50;
+            x2 = 50;
+            y2 = 50;
             // ctx.fillRect(x, 50, 100, 100);
             window.setInterval(refresh, 10);
             // wrong way of doing it
@@ -21,11 +26,14 @@
 
         function refresh() {
             // update data
-            x++;
+            x1++;
+            x2++;
+            y2++;
             // clear data
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             // redraw
-            ctx.fillRect(x, 50, 20, 20);
+            ctx.fillRect(x1, 50, 20, 20);
+            ctx.fillRect(x2, y2, 20, 20);
         }
     </script>
 </head>
